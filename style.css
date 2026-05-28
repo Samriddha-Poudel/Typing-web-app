@@ -154,11 +154,11 @@ input[type="checkbox"]:checked::before{
 }
 
 .correct{
-    background-color:#bfc9e4;
+    color:rgb(78, 218, 78);
 }
 
 .incorrect{
-    background-color:#bd5050;
+    color:#bd5050;
 }
 
 .active{
