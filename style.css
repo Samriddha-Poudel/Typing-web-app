@@ -96,8 +96,9 @@ input[type="checkbox"]:checked::before{
 
 .type-content input{
     position:absolute;
-    z-index:-99;
+    z-index:-999;
     opacity:0;
+    
 }
 
 .type-content p{
@@ -150,4 +151,35 @@ input[type="checkbox"]:checked::before{
     background-color:#d8f3dc;
     color:#fff;
 
+}
+
+.correct{
+    background-color:#bfc9e4;
+}
+
+.incorrect{
+    background-color:#bd5050;
+}
+
+.active{
+    opacity:.6;
+    position: relative;
+
+}
+
+.active::before{
+    position:absolute;
+    content:"";
+    right:0;
+    width: 2px;
+    opacity:0;
+    height:100%;
+    background-color:rgba(0, 0, 0, 0.89);
+    animation:blink .5s linear infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:1;
+    }
 }
