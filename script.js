@@ -2,6 +2,7 @@ let typecontent=document.querySelector(".type-content p");
 let input = document.getElementById('typeValue');
 let letterindex = (mistakes = isTyping = 0);
 let resetBtn = document.querySelector('.bottom-part button');
+let soundBtn = document.querySelector('.sound input');
 
 let time;
 let tleft= document.querySelector('.time-left');
@@ -9,9 +10,24 @@ let error=document.querySelector('.mistakes');
 let wpm= document.querySelector('.WPM');
 let cpm = document.querySelector('.CPM');
 
+let correctType= new Audio('typing.mp3');
+let incorrectType= new Audio('Wrong sound.mp3');
 
-let maxTime= 60;
+
+let maxTime= 30;
 let timeleft = maxTime;
+
+
+const playSound = (audio) => {
+    if(!soundBtn.checked){
+        audio.currentTime=0;
+        audio.play();
+    }
+}
+ 
+soundBtn.addEventListener('click', () => {
+    playSound();
+})
 
 
 
@@ -52,10 +68,13 @@ input.addEventListener('input',(e) => {
 
             if(char[letterindex].innerText == inputvalue){
                 char[letterindex].classList.add('correct');  
+                playSound(correctType);
+                
             }else{
                 char[letterindex].classList.add('incorrect');
                 mistakes++;
                 error.innerText = `Mistakes : ${mistakes}`;
+                playSound(incorrectType);
             }
             letterindex++;
             char.forEach(element => {
@@ -90,7 +109,7 @@ resetBtn.addEventListener('click', () => {
     error.innerText = `Mistakes : `;
     cpm.innerText =`CPM :`;
     timeleft= maxTime;
-    tleft.innerText =`Time-left:${maxTime}s`;
+    tleft.innerText =`Time-left: ${maxTime}s`;
     input.value="";
     letterindex = mistakes = isTyping = 0;
 })
